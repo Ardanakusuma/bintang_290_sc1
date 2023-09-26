@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Practice 2</title>
+	<style>
+		table{
+			border: 1px solid black;
+		}
+
+	</style>
+</head>
+<body>
+	<table cellpadding="10px">
+		<tr>
+			<td><label for="nama">Nama : </label></td>
+			<td><input type="text" id="nama" name="nama"></td>
+		</tr>
+		<tr>
+			<td><label for="email">Email : </label></td>
+			<td><input type="email" id="email" name="email"></td>
+		</tr>
+		<tr>
+			<td><label for="jk">Jenis Kelamin : </label></td>
+			<td>
+				<input type="radio" id="laki" name="jk">
+				<label for="laki">Laki-laki</label>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<input type="radio" id="perempuan" name="jk">
+				<label for="perempuan">Perempuan</label>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="alamat">Alamat : </label></td>
+			<td><textarea name="alamat"></textarea></td>
+		</tr>
+		<tr>
+			<td><label for="peminatan">Hobi : </label></td>
+			<td>
+				<input type="checkbox" id="baca" name="peminatan">
+				<label for="baca">Membaca buku</label><br>
+				<input type="checkbox" id="renang" name="peminatan">
+				<label for="renang">Berenang</label><br>
+				<input type="checkbox" id="jalan" name="peminatan">
+				<label for="jalan">Jalan-jalan</label>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="submit">Submit</button></td>
+		</tr>
+
+	</table>
+</body>
+</html>
