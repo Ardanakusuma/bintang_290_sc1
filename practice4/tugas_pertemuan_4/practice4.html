@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Konversi Suhu</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url("img/warm.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background 0.8s ease-in-out;
+        }
+
+        .container {
+            margin: 150px auto;
+            padding: 50px 20px;
+            width: 400px;
+            background-color: #59A4C1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        label, select, input {
+            width: 250px;
+            margin-bottom: 10px;
+        }
+
+        label, h2, p {
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #hasil {
+            width: 200px;
+            margin: 0 auto;
+            padding: 20px 20px;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Konversi Suhu</h2>
+        <label for="suhuDari">Dari :</label><br>
+        <select id="suhuDari">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="reamur">Reamur (°Re)</option>
+        </select>
+        <br>
+        <label for="suhuKe">Ke :</label><br>
+        <select id="suhuKe">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+            <option value="reamur">Reamur (°Re)</option>
+        </select>
+        <br>
+        <label for="suhu">Masukkan Suhu:</label><br>
+        <input type="number" id="suhu" onkeyup="rumusSuhu()" placeholder="Masukkan suhu"><br>
+        <button onclick="rumusSuhu()">Konversi</button><br><br>
+        <label for="hasil">Hasil Konfersi : </label>
+        <div id="hasil"></div><br>
+        <p>Bintang Kusuma Ardana | 21102290 | IF-09-SC1</p>
+    </div>
+    <footer>
+        
+    </footer>
+
+    <script type="text/javascript">
+        function rumusSuhu() {
+            const inputSuhu = parseFloat(document.getElementById('suhu').value);
+            const suhuDari = document.getElementById('suhuDari').value;
+            const suhuKe = document.getElementById('suhuKe').value;
+            const hasilElement = document.getElementById('hasil');
+
+            let hasilKonfersi;
+
+            if (suhuDari === suhuKe) {
+                hasilKonfersi = inputSuhu;
+            } else if (suhuDari === 'celsius') {
+                if (suhuKe === 'fahrenheit') {
+                    hasilKonfersi = celsiusKeFahrenheit(inputSuhu);
+                } else if (suhuKe === 'reamur') {
+                    hasilKonfersi = celsiusKeReamur(inputSuhu);
+                }
+            } else if (suhuDari === 'fahrenheit') {
+                if (suhuKe === 'celsius') {
+                    hasilKonfersi = fahrenheitKeCelsius(inputSuhu);
+                } else if (suhuKe === 'reamur') {
+                    hasilKonfersi = fahrenheitKeReamur(inputSuhu);
+                }
+            } else if (suhuDari === 'reamur') {
+                if (suhuKe === 'celsius') {
+                    hasilKonfersi = reamurKeCelsius(inputSuhu);
+                } else if (suhuKe === 'fahrenheit') {
+                    hasilKonfersi = reamurKeFahrenheit(inputSuhu);
+                }
+            }
+
+            hasilElement.textContent = `${hasilKonfersi.toFixed(2)} ${suhuKe}`;
+        }
+
+        function celsiusKeFahrenheit(inputSuhu) {
+            return (inputSuhu * 9/5) + 32;
+        }
+
+        function celsiusKeReamur(inputSuhu) {
+            return inputSuhu * 4/5;
+        }
+
+        function fahrenheitKeCelsius(inputSuhu) {
+            return (inputSuhu - 32) * 5/9;
+        }
+
+        function fahrenheitKeReamur(inputSuhu) {
+            return (inputSuhu - 32) * 4/9;
+        }
+
+        function reamurKeCelsius(inputSuhu) {
+            return inputSuhu * 5/4;
+        }
+
+        function reamurKeFahrenheit(inputSuhu) {
+            return (inputSuhu * 9/4) + 32;
+        }
+
+        const eventSuhu = document.getElementById('suhu');
+
+        eventSuhu.addEventListener('input', function () {
+            const isi = parseFloat(eventSuhu.value);
+
+            if(isi < 24){
+                document.body.style.backgroundImage = 'url("img/cold.jpeg")';
+            } else if (isi > 60) {
+                document.body.style.backgroundImage = 'url("img/hot.jpeg")';
+            } else {
+                document.body.style.backgroundImage = 'url("img/warm.jpeg")';
+            }
+            
+        });
+
+    </script>
+</body>
+</html>
